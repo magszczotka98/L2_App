@@ -60,7 +60,7 @@ class ComputerInfoApp(QtWidgets.QWidget):
         cpu_cores = os.cpu_count()
         ram_info = psutil.virtual_memory()
 
-        message = f"Wersja systemu operacyjnego: {system_info.system} {system_info.release}\nTyp systemu: {system_info.machine}\nLiczba rdzeni: {cpu_cores}\nPamięć RAM: {ram_info.total / (1024 ** 3):.2f} GB"
+        message = f"Wersja systemu operacyjnego: {system_info[0]} {system_info[2]}\nTyp systemu: {system_info[4]}\nLiczba rdzeni: {cpu_cores}\nPamięć RAM: {ram_info.total / (1024 ** 3):.2f} GB"
         self.text_view.setPlainText(message)
 
     def get_proxy_info(self):
