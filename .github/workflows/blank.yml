@@ -25,11 +25,11 @@ jobs:
           pip install PyQt5 pyinstaller pytest
 
       - name: Build EXE
-        run: pyinstaller --onefile L2_App/main/Lista_2_Msz.py
+        run: pyinstaller --onefile Lista_2_Msz.py
 
       - name: Upload EXE
         uses: actions/upload-artifact@v3
         with:
           name: exe-artifact
-          path: L2_App/main/dist/Lista_2_Msz.exe
+          path: main/dist/Lista_2_Msz.exe
 
