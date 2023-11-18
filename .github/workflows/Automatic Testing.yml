@@ -3,7 +3,7 @@ name: Automatic Testing
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: "0 0 * * 0"
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Install PyQt5 pyinstaller pytest psutil pytestqt
         run: |
-          pip install PyQt5 pyinstaller pytest psutil pytest-qt
+          pip install PyQt5 wmi pyinstaller pytest psutil pytest-qt
 
       - name: Run tests
         run: pytest test_TestComputerInfoApp.py -v
