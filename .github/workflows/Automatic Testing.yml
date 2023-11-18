@@ -3,33 +3,28 @@ name: Automatic Testing
 on:
   push:
     branches:
-      - main
+      - master
   schedule:
-    - cron: '0 0 * * 0'  # Uruchamianie raz w tygodniu o północy w niedzielę
-  workflow_dispatch:  # Uruchamianie ręcznie przez użytkownika
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  test_and_build:
+    runs-on: windows-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Setup Python
+      - name: Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.12.0
 
-      - name: Install dependencies
+      - name: Install PyQt5 pyinstaller pytest psutil pytestqt
         run: |
-          pip install pytest
+          pip install PyQt5 pyinstaller pytest psutil pytest-qt
 
-      - name: Run Unit Tests
-        run: pytest Lista_2_Msz.py
-
-      - name: Build EXE
-        run: pyinstaller --onefile Lista_2_Msz.py
-
-      - name: Run Application Tests
-        run: python Lista_2_Msz.py || exit 0
+      - name: Run tests
+        run: pytest test_TestComputerInfoApp.py -v
 
